@@ -1,8 +1,8 @@
 import express from "express";
 const urlsRouter = express.Router();
 
-urlsRouter.get("/", (req, res) => {
-    // console.log("urlsRouter works");
-    res.render("urls");
-});
+import { renderUrls } from "../controllers/urls.js";
+
+urlsRouter.get("/", renderUrls);
+// console.log("urlsRouter works");
 export default urlsRouter;
