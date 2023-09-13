@@ -11,6 +11,3 @@ export const newUrls = (req, res) => {
 // export const idUrls = (req, res) => {
 //     res.render("newUrl");
 // };
-
-// conditionally rendering, shouldn't show Login & Register
-// add a button to create newUrl ( route to newUrl)
