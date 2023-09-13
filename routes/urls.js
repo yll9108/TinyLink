@@ -10,6 +10,6 @@ urlsRouter.get("/new", newUrls);
 // console.log("editUrls works");
 
 urlsRouter.get("/:id", singleUrl);
-console.log("singleUrl works");
+// console.log("singleUrl works");
 
 export default urlsRouter;
