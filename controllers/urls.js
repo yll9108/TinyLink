@@ -4,8 +4,12 @@ export const renderUrls = (req, res) => {
     res.render("urls");
 };
 
-// export const singleUrls = (req, res) => {
-//     res.render("singleUrl");
+export const newUrls = (req, res) => {
+    res.render("newUrl");
+};
+
+// export const idUrls = (req, res) => {
+//     res.render("newUrl");
 // };
 
 // conditionally rendering, shouldn't show Login & Register
