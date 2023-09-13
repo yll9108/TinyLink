@@ -8,6 +8,6 @@ export const newUrls = (req, res) => {
     res.render("newUrl");
 };
 
-// export const idUrls = (req, res) => {
-//     res.render("newUrl");
-// };
+export const singleUrl = (req, res) => {
+    res.render("singleUrl");
+};
