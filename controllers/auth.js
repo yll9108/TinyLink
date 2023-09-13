@@ -31,9 +31,13 @@ export const newUser = (req, res) => {
 
 
 
+
     writeDataToFile("./models/users.json", newUser)
-        .then(res.redirect("/"))
-        .catch((e) => console.log(e, "e"))
+        .then(res.status(201).redirect("/"))
+
+
+
+
 
 
 

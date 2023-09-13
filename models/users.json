@@ -1,10 +1,10 @@
 {
     "users": [
         {
-            "id": "a4b4499b-dd9d-45c1-b89d-a5e8e8a70bfb",
+            "id": "4a8d1b90-463f-4a32-8004-23b959e2c7b2",
             "name": "diogo",
             "email": "diogokalmeida@gmail.com",
-            "password": "$2b$12$O/2GTw6aEvYQKlZFwhStB.1n4Ydlton96mpPp/DZs2nlsR5EUi8Hy"
+            "password": "$2b$12$HKms.aHEU.HU.Fhd98I7M.r6qns41/zWtQ5Kn7G/CZAIiB9wM2UTu"
         }
     ]
 }
