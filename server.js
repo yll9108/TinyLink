@@ -20,6 +20,12 @@ server.use(
         maxAge: 24 * 60 * 60 * 1000,
     })
 );
+
+server.use((req, res, next) => {
+    req.session = req.session || {};
+    next();
+});
+
 const __dirname = path.resolve();
 
 server.get("/", (req, res) => {
@@ -41,7 +47,8 @@ server.post("/", (req, res) => {
     );
 
     if (user) {
-        req.cookieSession.user = user;
+        req.session.user = user;
+        console.log("req.session.user", req.session.user);
         res.redirect("/urls");
     } else {
         res.status(401).send("Invaild email or password");
