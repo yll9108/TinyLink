@@ -1,25 +1,18 @@
 import fs from "fs"
 
 export const writeDataToFile = (filename, content) => {
-    return new Promise(function (resolve, reject) {
-        let db = reading(filename)
-        if (validating(content.email, db)) {
-            reject("User already registered")
-        } else {
-            let newDB = { users: [] }
-            newDB.users = db.users
-            newDB.users.push(content)
-            updating(filename, JSON.stringify(newDB))
-            resolve()
-        }
-    }).catch((error) => {
-        console.log("error", error)
-        return error
-    })
+
+    let db = reading(filename)
+    let newDB = { users: [] }
+    newDB.users = db.users
+    newDB.users.push(content)
+    updating(filename, JSON.stringify(newDB))
+
+
 };
 
 
-const reading = (filename) => {
+export const reading = (filename) => {
     let readedFile = fs.readFileSync(filename, (err, data) => {
         if (err) {
             console.log("error on read file", err);
@@ -41,16 +34,6 @@ const updating = (filename, finalJSON) => {
             console.log("DONE")
         }
     })
-}
-
-const validating = (email, db) => {
-    let found = false;
-    db.users.find((user) => {
-        if (email === user.email) {
-            found = true
-        }
-    })
-    return found
 }
 
 
