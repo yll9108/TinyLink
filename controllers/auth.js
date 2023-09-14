@@ -1,4 +1,4 @@
-import { getAllUsers } from "../helpers/users.js";
+import { getAllUsers, validate } from "../helpers/users.js";
 import { writeDataToFile, reading } from "../utils/updateDB.js";
 import bcrypt from "bcrypt"
 import { v4 as uuidv4 } from 'uuid';
@@ -7,22 +7,14 @@ const dbPath = "./models/users.json";
 
 export const renderRegister = (req, res) => {
 
-    res.render("register");
+    res.render("register", { error: false, message: "" });
     // const users = getAllUsers()
     // res.send(users)
 
 };
 
 
-const validate = (email, db) => {
-    let found = false;
-    db.users.find((user) => {
-        if (email === user.email) {
-            found = true
-        }
-    })
-    return found
-}
+
 
 
 
@@ -30,16 +22,13 @@ const validate = (email, db) => {
 export const newUser = (req, res) => {
 
     if (req.body.name === " " || req.body.email === " " || req.body.password === "") {
-        res.send("Please fill out the fields")
-    }
-
-    console.log("req", req.body)
-
-    const db = reading(dbPath)
-    if (validate(req.body.email, db)) {
-        res.send("Error")
+        res.render("register", { error: true, message: "Please fill out all the fields." })
     } else {
-        try {
+        const db = reading(dbPath)
+        if (validate(req.body.email, db)) {
+            res.render("register", { error: true, message: "User already registered" })
+        } else {
+
             const saltRounds = 12;
             const salt = bcrypt.genSaltSync(saltRounds);
             const hash = bcrypt.hashSync(req.body.password, salt);
@@ -52,10 +41,12 @@ export const newUser = (req, res) => {
             }
             writeDataToFile(dbPath, newUser)
             res.redirect("/")
-        } catch (error) {
-            throw new Error()
+
         }
     }
+
+
+
 }
 
 
