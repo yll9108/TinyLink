@@ -2,8 +2,6 @@ import { getAllUsers } from "../helpers/users.js";
 import { writeDataToFile, reading } from "../utils/updateDB.js";
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
-import fs from "fs";
-import path from "path";
 
 const dbPath = "./models/users.json";
 
@@ -62,10 +60,9 @@ export const newUser = (req, res) => {
 };
 
 export const checkACandSetCookie = (req, res) => {
-    const __dirname = path.resolve();
-    const userDataPath = path.join(__dirname, dbPath);
-    const userData = fs.readFileSync(userDataPath, "utf-8");
-    const users = JSON.parse(userData);
+    // const __dirname = path.resolve();
+    // const userDataPath = path.join(__dirname, dbPath);
+    const users = getAllUsers();
     const { email, password } = req.body;
     // const userArray = Object.values(users);
     // console.log("userArray", userArray);
