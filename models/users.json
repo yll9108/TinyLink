@@ -1,7 +1,10 @@
 {
-  "gjiodgioasf": {
-    "id": "gjiodgioasf",
-    "email": "test@test.com",
-    "password": "1234"
-  }
+    "users": [
+        {
+            "id": "99b086ad-0b9e-47b9-9bbb-457de75b993e",
+            "name": "diogo",
+            "email": "diogokalmeida@gmail.com",
+            "password": "$2b$12$i4t1QSpmEJBQYN8ICfqgFurLiwXiTxkhCDuY4gdQQE0D3soE3qxxW"
+        }
+    ]
 }
