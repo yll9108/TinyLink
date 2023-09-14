@@ -1,10 +1,1 @@
-{
-    "users": [
-        {
-            "id": "99b086ad-0b9e-47b9-9bbb-457de75b993e",
-            "name": "diogo",
-            "email": "diogokalmeida@gmail.com",
-            "password": "$2b$12$i4t1QSpmEJBQYN8ICfqgFurLiwXiTxkhCDuY4gdQQE0D3soE3qxxW"
-        }
-    ]
-}
+{"users":[{"id":"99b086ad-0b9e-47b9-9bbb-457de75b993e","name":"diogo","email":"diogokalmeida@gmail.com","password":"$2b$12$i4t1QSpmEJBQYN8ICfqgFurLiwXiTxkhCDuY4gdQQE0D3soE3qxxW"},{"id":"58251c6c-5a0a-4796-8446-8acdb7f582fb","name":"Yen","email":"123@example.com","password":"$2b$12$NXw4YW/EYg5A7/CTzTFrwefqr0G4JLhf2uzE2.Sbpy0hSk2u/lM32"}]}
