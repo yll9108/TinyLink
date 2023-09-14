@@ -1,20 +1,31 @@
 import express from "express";
-import path from "path";
+import cookieSession from "cookie-session";
+import Keygrip from "keygrip";
 const server = express();
 import urlsRouter from "./routes/urls.js";
-import usersRouter from "./routes/auth.js"
+import { usersRouter, loginRouter } from "./routes/auth.js";
 
 server.set("view engine", "ejs");
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
-const __dirname = path.resolve();
+const keysList = Keygrip(["SEKRIT2", "SEKRIT1"], "sha256");
 
-server.get("/", (req, res) => {
-    res.render("login", { root: __dirname });
+server.use(
+    cookieSession({
+        name: "session",
+        keys: keysList,
+        maxAge: 24 * 60 * 60 * 1000,
+    })
+);
+
+server.use((req, res, next) => {
+    req.session = req.session || {};
+    next();
 });
 
+server.use("/", loginRouter);
 server.use("/urls", urlsRouter);
-server.use("/users", usersRouter)
+server.use("/users", usersRouter);
 
 export default server;

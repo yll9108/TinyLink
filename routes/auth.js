@@ -1,12 +1,17 @@
 import express from "express";
-const usersRouter = express.Router();
+export const usersRouter = express.Router();
+export const loginRouter = express.Router();
 
-import { renderRegister, newUser } from "../controllers/auth.js";
+import {
+    renderRegister,
+    newUser,
+    renderLogin,
+    checkACandSetCookie,
+} from "../controllers/auth.js";
 
 usersRouter.get("/", renderRegister);
 usersRouter.get("/newuser", renderRegister);
-usersRouter.post("/newuser", newUser)
+usersRouter.post("/newuser", newUser);
 
-
-
-export default usersRouter;
+loginRouter.get("/", renderLogin);
+loginRouter.post("/", checkACandSetCookie);
