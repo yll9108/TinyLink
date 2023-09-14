@@ -1,3 +1,4 @@
+import fs from "fs";
 import express from "express";
 import path from "path";
 import cookieSession from "cookie-session";
@@ -10,33 +11,41 @@ server.set("view engine", "ejs");
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
-// const keysList = Keygrip(["SEKRIT2", "SEKRIT1"], "sha256");
+const keysList = Keygrip(["SEKRIT2", "SEKRIT1"], "sha256");
 
-// server.use(
-//     cookieSession({
-//         name: "session",
-//         keys: keysList,
-//         maxAge: 24 * 60 * 60 * 1000,
-//     })
-// );
+server.use(
+    cookieSession({
+        name: "session",
+        keys: keysList,
+        maxAge: 24 * 60 * 60 * 1000,
+    })
+);
 const __dirname = path.resolve();
 
 server.get("/", (req, res) => {
     res.render("login", { root: __dirname });
 });
 
-server.post("/", (req, res) => {
-    console.log("testing");
-    res.redirect("/urls");
+const userDataPath = path.join(__dirname, "models/users.json");
+const userData = fs.readFileSync(userDataPath, "utf-8");
+const users = JSON.parse(userData);
 
-    // const formData = req.body;
-    // try {
-    //     console.log("server.post is working");
-    //     res.send("Post request received");
-    // } catch (err) {
-    //     console.log(err);
-    //     res.status(500).send("Internal Server Error");
-    // }
+server.post("/", (req, res) => {
+    console.log(req.body);
+    // res.send("HEllo");
+
+    const { email, password } = req.body;
+    const userArray = Object.values(users);
+    const user = userArray.find(
+        (user) => user.email === email && user.password === password
+    );
+
+    if (user) {
+        req.cookieSession.user = user;
+        res.redirect("/urls");
+    } else {
+        res.status(401).send("Invaild email or password");
+    }
 });
 
 server.use("/urls", urlsRouter);
