@@ -36,5 +36,41 @@ const updating = (filename, finalJSON) => {
     })
 }
 
+export const writeDataToFileURL = (filename, content) => {
+    try {
+        const jsonData = JSON.stringify(content, null, 4);
+        fs.writeFileSync(filename, jsonData);
+        console.log("URL data file updated successfully.");
+    } catch (err) {
+        console.error("Error writing URL data file:", err);
+    }
+};
+
+export const readingURL = (filename) => {
+    let readedFile;
+    try {
+        readedFile = fs.readFileSync(filename, "utf-8");
+    } catch (err) {
+        console.log("Error reading file", err);
+        readedFile = "";
+    }
+
+    if (readedFile.length === 0) {
+        return { urls: [] }; 
+    } else {
+        return JSON.parse(readedFile);
+    }
+};
+
+const updatingURL = (filename, finalJSON) => {
+    try {
+        fs.writeFileSync(filename, finalJSON);
+        console.log("URL data file updated successfully.");
+    } catch (err) {
+        console.log("Error writing URL data file", err);
+    }
+};
+
+
 
 
