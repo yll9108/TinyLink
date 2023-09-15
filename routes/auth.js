@@ -1,12 +1,21 @@
 import express from "express";
-const usersRouter = express.Router();
+export const usersRouter = express.Router();
+export const loginRouter = express.Router();
+export const logOutRouter = express.Router();
 
-import { renderRegister, newUser } from "../controllers/auth.js";
+import {
+    renderRegister,
+    newUser,
+    renderLogin,
+    checkACandSetCookie,
+    deleteCookie,
+} from "../controllers/auth.js";
 
 usersRouter.get("/", renderRegister);
 usersRouter.get("/newuser", renderRegister);
-usersRouter.post("/newuser", newUser)
+usersRouter.post("/newuser", newUser);
 
+loginRouter.get("/", renderLogin);
+loginRouter.post("/", checkACandSetCookie);
 
-
-export default usersRouter;
+logOutRouter.post("/", deleteCookie);
