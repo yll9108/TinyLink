@@ -12,3 +12,13 @@ export const getAllUsers = (req, res) => {
     return users
 };
 
+export const validate = (email, db) => {
+    let found = false;
+    db.users.find((user) => {
+        if (email === user.email) {
+            found = true
+        }
+    })
+    return found
+}
+

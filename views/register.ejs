@@ -18,7 +18,7 @@
     <title>New URL - TinyLinks</title>
   </head>
 
-  <body>
+  <body class="modal-open">
     <main style="margin: 1em">
       <form action="/users/newuser" method="post" name="newuser">
         <div>
@@ -36,6 +36,13 @@
         <button type="submit">Register</button>
       </form>
     </main>
+
+
+    <% if (error) { %>
+      <%- include ("partials/modal.ejs"); %>
+      <% } %>
+
+
     <!-- Bootstrap JS -->
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -52,5 +59,16 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <script>
+           let modal = document.getElementById("exampleModal");
+           let back = document.getElementById("back-drop-modal")
+           const buttons = document.getElementsByClassName("buttons-close")
+            Array.from(buttons).forEach(btn => {
+              btn.addEventListener("click", function () {
+                modal.style.display = "none"
+                back.classList.remove("modal-backdrop", "fade", "show")
+              });
+            });
+    </script>
   </body>
 </html>
