@@ -11,9 +11,10 @@ export const renderLogin = (req, res) => {
 
 
 export const renderRegister = (req, res) => {
-    res.render("register");
+    res.render("register", { error: false, message: "" });
     // const users = getAllUsers()
     // res.send(users)
+
 };
 
 
@@ -24,15 +25,8 @@ export const renderRegister = (req, res) => {
 
 
 export const newUser = (req, res) => {
-
     if (req.body.name === " " || req.body.email === " " || req.body.password === "") {
         res.render("register", { error: true, message: "Please fill out all the fields." })
-
-    console.log("req", req.body);
-
-    const db = reading(dbPath);
-    if (validate(req.body.email, db)) {
-        res.send("Error");
     } else {
         const db = reading(dbPath)
         if (validate(req.body.email, db)) {
@@ -42,7 +36,7 @@ export const newUser = (req, res) => {
             const saltRounds = 12;
             const salt = bcrypt.genSaltSync(saltRounds);
             const hash = bcrypt.hashSync(req.body.password, salt);
-            let id = uuidv4();
+            let id = uuidv4()
             const newUser = {
                 id: id,
                 name: req.body.name,
@@ -54,9 +48,6 @@ export const newUser = (req, res) => {
 
         }
     }
-
-
-
 }
 
 export const checkACandSetCookie = (req, res) => {
