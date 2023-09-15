@@ -1,10 +1,11 @@
 // urls functions
 import shortid  from "shortid";
-import { writeDataToFile} from "../utils/updateDB";
+import { readingURL, writeDataToFileURL } from "../utils/updateDB.js";
 
 export const renderUrls = (req, res) => {
-    res.render("urls");
-};
+    const data = readingURL("models/urls.json");
+    res.render("urls", { urls: data.urls });
+  };
 
 export const newUrls = (req, res) => {
     res.render("newUrl");
@@ -17,17 +18,22 @@ export const singleUrl = (req, res) => {
 export const createUrl = (req, res) => {
     const { longUrl } = req.body;
     const shortUrlId = shortid.generate();
-    console.log(`Shortened URL: ${shortUrlId}`);
+    // console.log(`Shortened URL: ${shortUrlId}`);
     
-    // Read existing data from the file
-    const data = reading("models/urls.json");
+    const data = readingURL("models/urls.json");
+
     const newUrl = {
+        id: shortUrlId,
         longUrl,
-        shortUrlId,
-        userID
+        // userID 
     };
+    
     data.urls.push(newUrl);
-    writeDataToFile("models/urls.json", data);
-    // Redirect to /urls
+
+    writeDataToFileURL("models/urls.json", data);
+
+    // Redirect
     res.redirect("/urls");
 };
+
+
