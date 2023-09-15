@@ -81,3 +81,8 @@ export const checkACandSetCookie = (req, res) => {
         res.status(401).send("sth went wrong");
     }
 };
+
+export const deleteCookie = (req, res) => {
+    req.session = null;
+    res.redirect("/");
+};
