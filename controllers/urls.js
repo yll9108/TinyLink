@@ -20,8 +20,12 @@ export const createUrl = (req, res) => {
     const shortUrlId = shortid.generate();
     // console.log(`Shortened URL: ${shortUrlId}`);
 
+    if (!req.session.user || !req.session.user.id) {
+        return res.status(401).send("Unauthorized");
+    }
+    
     let userId = req.session.user.id
-
+    
     const data = readingURL("models/urls.json");
 
     const newUrl = {
@@ -38,4 +42,33 @@ export const createUrl = (req, res) => {
     res.redirect("/urls");
 };
 
+export const deleteUrl = (req, res) => {
+
+    if (!req.session.user || !req.session.user.id) {
+        return res.status(401).send("Unauthorized");
+    }
+
+    const userId = req.session.user.id
+    // console.log("userId",userId);
+    const urlIdToDelete  = req.params.id;
+    // console.log("urlIdToDelete",urlIdToDelete)
+    const data = readingURL("models/urls.json");
+    // console.log("data", data.urls[0].id);
+    const indexToDelete = data.urls.findIndex((url) => url.id === urlIdToDelete);
+    // console.log("indexToDelete",indexToDelete);
+
+    if(indexToDelete === -1){
+        return res.status(404).send("URL not found");
+    }
+    if(data.urls[indexToDelete].userId !== userId){
+        return res.status(403).send("This url does not belong to you")
+    }
+
+    //delete url
+    data.urls.splice(indexToDelete, 1);
+    writeDataToFileURL("models/urls.json", data);
+
+    // Redirect
+    res.redirect("/urls");
+}
 

@@ -51,7 +51,7 @@ export const readingURL = (filename) => {
     try {
         readedFile = fs.readFileSync(filename, "utf-8");
     } catch (err) {
-        console.log("Error reading file", err);
+        console.log("Error reading URL data file", err);
         readedFile = "";
     }
 
@@ -67,7 +67,7 @@ const updatingURL = (filename, finalJSON) => {
         fs.writeFileSync(filename, finalJSON);
         console.log("URL data file updated successfully.");
     } catch (err) {
-        console.log("Error writing URL data file", err);
+        console.log("Error updating URL data file", err);
     }
 };
 
