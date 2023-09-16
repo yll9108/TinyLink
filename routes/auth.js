@@ -15,7 +15,12 @@ usersRouter.get("/", renderRegister);
 usersRouter.get("/newuser", renderRegister);
 usersRouter.post("/newuser", newUser);
 
-loginRouter.get("/", renderLogin);
+loginRouter.get("/", (req, res) => {
+    if (req.session.user) {
+        return res.redirect("/urls");
+    }
+    res.render("login");
+});
 loginRouter.post("/", checkACandSetCookie);
 
 logOutRouter.post("/", deleteCookie);

@@ -24,6 +24,13 @@ server.use((req, res, next) => {
     next();
 });
 
+const checkAuthentication = (req, res, next) => {
+    if (!req.session.user) {
+        return res.redirect("/login");
+    }
+    next();
+};
+
 server.use("/", loginRouter);
 server.use("/urls", urlsRouter);
 server.use("/users", usersRouter);
