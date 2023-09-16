@@ -21,15 +21,14 @@ server.use(
 
 server.use((req, res, next) => {
     req.session = req.session || {};
+    res.locals.user = req.session.user;
     next();
 });
 
-const checkAuthentication = (req, res, next) => {
-    if (!req.session.user) {
-        return res.redirect("/login");
-    }
-    next();
-};
+// server.use((req, res, next) => {
+//     res.locals.user = req.session.user;
+//     next();
+// });
 
 server.use("/", loginRouter);
 server.use("/urls", urlsRouter);
