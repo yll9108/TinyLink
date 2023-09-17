@@ -1,10 +1,9 @@
 {
-  "fds9qW": {
-    "shortUrl": "fds9qW",
-    "longUrl": "http://www.google.com"
-  },
-  "b6Fd1r": {
-    "shortUrl": "b6Fd1r",
-    "longUrl": "http://www.facebook.com"
-  }
+    "urls": [
+        {
+            "id": "uIytfudRN",
+            "longUrl": "http://localhost:3000/urls/new",
+            "userId": "178d4bd4-527b-41d4-b86d-9cf7102db299"
+        }
+    ]
 }

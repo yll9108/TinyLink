@@ -1,28 +1,36 @@
 {
-    "name": "tinylinks",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "nodemon app.js"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "bcrypt": "^5.0.1",
-        "body-parser": "^1.20.0",
-        "cookie-session": "^2.0.0",
-        "ejs": "^3.1.8",
-        "express": "^4.18.1",
-        "jsonwebtoken": "^9.0.2",
-        "keygrip": "^1.1.0",
-        "morgan": "^1.10.0",
-        "uuid": "^9.0.1"
-    },
-    "devDependencies": {
-        "nodemon": "^2.0.19"
-    },
-    "type": "module"
+  "name": "tinylinks",
+  "version": "1.0.0",
+  "description": "[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/D56eEpAT)\r # Mid Term Project - TinyLinks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cookie-session": "^2.0.0",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "keygrip": "^1.1.0",
+    "morgan": "^1.10.0",
+    "shortid": "^2.2.16",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diogoka/middle-project-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/diogoka/middle-project-node/issues"
+  },
+  "homepage": "https://github.com/diogoka/middle-project-node#readme"
 }
