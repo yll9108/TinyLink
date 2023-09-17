@@ -25,11 +25,6 @@ server.use((req, res, next) => {
     next();
 });
 
-// server.use((req, res, next) => {
-//     res.locals.user = req.session.user;
-//     next();
-// });
-
 server.use("/", loginRouter);
 server.use("/urls", urlsRouter);
 server.use("/users", usersRouter);

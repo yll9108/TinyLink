@@ -14,7 +14,7 @@ export const renderLogin = (req, res) => {
 };
 
 export const renderRegister = (req, res) => {
-    res.render("register", { error: false, message: "" });
+    res.render("register", { user: null, error: false, message: "" });
     // const users = getAllUsers()
     // res.send(users)
 };
