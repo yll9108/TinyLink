@@ -7,6 +7,8 @@ import {
     singleUrl,
     createUrl,
     deleteUrl,
+    renderSingleUrl,
+    updateUrl,
 } from "../controllers/urls.js";
 
 import { ifAuth } from "../controllers/auth.js";
@@ -27,5 +29,11 @@ urlsRouter.post("/new", createUrl);
 
 urlsRouter.post("/:id/delete", deleteUrl);
 // console.log("deleteUrl works");
+
+urlsRouter.post("/:id", renderSingleUrl);
+// console.log("renderSingleUrl works");
+
+urlsRouter.post("/:id/edit", updateUrl);
+// console.log("updateUrl works");
 
 export default urlsRouter;
