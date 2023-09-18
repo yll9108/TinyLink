@@ -72,3 +72,62 @@ export const deleteUrl = (req, res) => {
     res.redirect("/urls");
 }
 
+export const renderSingleUrl = (req, res) => {
+    if (!req.session.user || !req.session.user.id) {
+        return res.status(401).send("Unauthorized");
+    }
+
+    const userId = req.session.user.id;
+    const urlIdToEdit = req.params.id;
+    // console.log('userId',userId);
+    // console.log('urlIdToEdit',urlIdToEdit);
+    
+    const data = readingURL("models/urls.json");
+    const urlToEdit = data.urls.find((url) => url.id === urlIdToEdit);
+    // const indexToEdit = data.urls.findIndex((url) => url.id === urlIdToEdit);
+    console.log('urlToEdit',urlToEdit);
+
+    if (!urlToEdit) {
+        return res.status(404).send("URL not found");
+      }
+    
+    if (urlToEdit.userId !== userId) {
+        return res.status(403).send("This URL does not belong to you");
+      }
+    
+    res.render("singleUrl", { urlToEdit }); 
+};
+
+export const updateUrl = (req, res) => {
+    if (!req.session.user || !req.session.user.id) {
+        return res.status(401).send("Unauthorized");
+    }
+
+    const userId = req.session.user.id;
+    const urlIdToEdit = req.params.id;
+    // console.log('userId',userId);
+    // console.log('urlIdToEdit',urlIdToEdit);
+
+    const data = readingURL("models/urls.json");
+    const indexToEdit = data.urls.findIndex((url) => url.id === urlIdToEdit);
+    // console.log('indexToEdit',indexToEdit);
+
+    if (indexToEdit === -1) {
+        return res.status(404).send("URL not found");
+    }
+
+    if (data.urls[indexToEdit].userId !== userId) {
+        return res.status(403).send("This URL does not belong to you");
+    }
+
+    // Update the longUrl with the new value from the form
+    data.urls[indexToEdit].longUrl = req.body.updatedUrl;
+
+    // Update
+    writeDataToFileURL("models/urls.json", data);
+
+    // Redirect 
+    res.redirect(`/urls`);
+};
+
+
