@@ -10,7 +10,7 @@ export const ifAuth = (req, res, next) => {
     if (user) {
         next();
     } else {
-        res.redirect("/");
+        res.render("error", { errorMsg: "You're not logged in." });
     }
 };
 

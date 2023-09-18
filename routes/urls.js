@@ -14,14 +14,15 @@ import {
 import { ifAuth } from "../controllers/auth.js";
 
 urlsRouter.get("/", ifAuth);
+// urlsRouter.get("/new", ifAuth);
 
 urlsRouter.get("/", renderUrls);
 // console.log("urlsRouter works");
 
-urlsRouter.get("/new", newUrls);
+urlsRouter.get("/new", ifAuth, newUrls);
 // console.log("editUrls works");
 
-urlsRouter.get("/:id", singleUrl);
+urlsRouter.get("/:id", ifAuth, singleUrl);
 // console.log("singleUrl works");
 
 urlsRouter.post("/new", createUrl);
