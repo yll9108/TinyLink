@@ -32,4 +32,9 @@ server.use("/", loginRouter);
 server.use("/urls", urlsRouter);
 server.use("/users", usersRouter);
 server.use("/logout", logOutRouter);
+
+server.use((req, res, next) => {
+    res.status(404).render("404");
+    next();
+});
 export default server;

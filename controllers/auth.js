@@ -9,7 +9,6 @@ export const ifAuth = (req, res, next) => {
     const user = req.session.user;
     if (user) {
         next();
-        console.log("HELLO");
     } else {
         res.redirect("/");
     }
