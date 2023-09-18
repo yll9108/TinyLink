@@ -1,7 +1,17 @@
 import express from "express";
 const urlsRouter = express.Router();
 
-import { renderUrls, newUrls, singleUrl, createUrl, deleteUrl } from "../controllers/urls.js";
+import {
+    renderUrls,
+    newUrls,
+    singleUrl,
+    createUrl,
+    deleteUrl,
+} from "../controllers/urls.js";
+
+import { ifAuth } from "../controllers/auth.js";
+
+urlsRouter.get("/", ifAuth);
 
 urlsRouter.get("/", renderUrls);
 // console.log("urlsRouter works");

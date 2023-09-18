@@ -5,6 +5,16 @@ import { v4 as uuidv4 } from "uuid";
 
 const dbPath = "./models/users.json";
 
+export const ifAuth = (req, res, next) => {
+    const user = req.session.user;
+    if (user) {
+        next();
+        console.log("HELLO");
+    } else {
+        res.redirect("/");
+    }
+};
+
 export const renderLogin = (req, res) => {
     const user = req.session.user;
     if (user) {

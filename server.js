@@ -4,6 +4,7 @@ import Keygrip from "keygrip";
 const server = express();
 import urlsRouter from "./routes/urls.js";
 import { usersRouter, loginRouter, logOutRouter } from "./routes/auth.js";
+// import { ifAuth } from "./controllers/auth.js";
 
 server.set("view engine", "ejs");
 server.use(express.json());
@@ -24,6 +25,8 @@ server.use((req, res, next) => {
     res.locals.user = req.session.user;
     next();
 });
+
+// server.use("/urls", ifAuth);
 
 server.use("/", loginRouter);
 server.use("/urls", urlsRouter);
