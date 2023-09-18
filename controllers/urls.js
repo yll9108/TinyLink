@@ -105,12 +105,12 @@ export const updateUrl = (req, res) => {
 
     const userId = req.session.user.id;
     const urlIdToEdit = req.params.id;
-    console.log('userId',userId);
-    console.log('urlIdToEdit',urlIdToEdit);
+    // console.log('userId',userId);
+    // console.log('urlIdToEdit',urlIdToEdit);
 
     const data = readingURL("models/urls.json");
     const indexToEdit = data.urls.findIndex((url) => url.id === urlIdToEdit);
-    console.log('indexToEdit',indexToEdit);
+    // console.log('indexToEdit',indexToEdit);
 
     if (indexToEdit === -1) {
         return res.status(404).send("URL not found");
