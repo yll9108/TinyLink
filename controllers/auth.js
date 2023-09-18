@@ -10,7 +10,7 @@ export const renderLogin = (req, res) => {
     if (user) {
         return res.redirect("/urls");
     }
-    res.render("login");
+    res.render("login", { user, error: false, message: "" });
 };
 
 export const renderRegister = (req, res) => {
@@ -65,7 +65,11 @@ export const checkACandSetCookie = (req, res) => {
                 res.redirect("/urls");
                 console.log("req.session.user", req.session.user);
             } else {
-                res.status(401).send("Invaild email or password");
+                // res.status(401).send("Invaild email or password");
+                res.render("login", {
+                    error: true,
+                    message: "Invaild email or password",
+                });
             }
         });
     } else {
