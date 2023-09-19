@@ -3,8 +3,15 @@ import shortid from "shortid";
 import { readingURL, writeDataToFileURL } from "../utils/updateDB.js";
 
 export const renderUrls = (req, res) => {
+    if (!req.session.user || !req.session.user.id) {
+        return res.status(401).send("Unauthorized");
+    }
+
+    const userId = req.session.user.id;
     const data = readingURL("models/urls.json");
-    res.render("urls", { urls: data.urls });
+    const userUrls = data.urls.filter((url) => url.userId === userId);
+
+    res.render("urls", { urls: userUrls });
 };
 
 export const newUrls = (req, res) => {
@@ -114,8 +121,6 @@ export const updateUrl = (req, res) => {
         return res.status(403).send("This URL does not belong to you");
     }
 
-    // Update the longUrl with the new value from the form
-    // data.urls[indexToEdit].longUrl = req.body.updatedUrl;
     data.urls[indexToEdit].updateUrl = req.body.updateUrl;
 
     // Update
