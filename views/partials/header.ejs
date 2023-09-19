@@ -1,30 +1,43 @@
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark bg-success">
-    <a class="navbar-brand">TinyLinks</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav d-flex justify-content-between w-100">
-        <div class="d-flex">
-          <a href="/urls" class="nav-item nav-link">My URLs</a>
-          <a href="/urls/new" class="nav-item nav-link">Create New URL</a>
-        </div>
-        <div class="d-flex">
-          <span class="nav-item nav-link">Logged in as: </span>
-          <form action="/logout" method="POST">
-            <button type="submit" class="btn btn-danger">Logout</button>
-          </form>
-          <a class="nav-item nav-link">Login</a>
-          <a href="/users/newuser" class="nav-item nav-link">Register</a>
+    <nav class="navbar navbar-expand-md navbar-dark bg-success">
+        <a class="navbar-brand">TinyLinks</a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav d-flex justify-content-between w-100">
+                <% if (user) {%>
+                <div class="d-flex">
+                    <a href="/urls" class="nav-item nav-link">My URLs</a>
+                    <a href="/urls/new"class="nav-item nav-link">Create New URL</a>
+                </div>
+                <% } %>
+                <div class="d-flex">
+                    <% if (user) {%>
+                    <span class="nav-item nav-link"
+                        >Logged in as: <%= user.email %></span
+                    >
+                    <form action="/logout" method="POST">
+                        <button type="submit" class="btn btn-danger">
+                            Logout
+                        </button>
+                    </form>
+                    <% } else { %>
+                    <a href="/" class="nav-item nav-link">Login</a>
+                    <a href="/users/newuser" class="nav-item nav-link"
+                        >Register</a
+                    >
+                    <% } %>
+                </div>
+            </div>
         </div>
       </div>
     </div>
