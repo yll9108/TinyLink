@@ -3,7 +3,20 @@
         {
             "id": "uIytfudRN",
             "longUrl": "http://localhost:3000/urls/new",
+            "updateUrl": "http://localhost:3000/urls/new",
             "userId": "178d4bd4-527b-41d4-b86d-9cf7102db299"
+        },
+        {
+            "id": "mjj29myFC",
+            "longUrl": "https://www.google.com/",
+            "updateUrl": "google",
+            "userId": "6f844aa3-ad0b-4a5e-a8ec-19edd00d0161"
+        },
+        {
+            "id": "wSEgA_dtw",
+            "longUrl": "https://www.youtube.com/",
+            "updateUrl": "https://www.youtube.com/",
+            "userId": "6f844aa3-ad0b-4a5e-a8ec-19edd00d0161"
         }
     ]
 }

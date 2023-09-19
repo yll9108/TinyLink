@@ -21,11 +21,12 @@
       <div>
         <h5>Edit</h5>
         <form action="/urls/<%= urlToEdit.id %>/edit" method="POST">
-          <label for="updatedUrl">New URL:</label>
+          <label for="updateUrl">New URL:</label>
           <input
             type="text"
             placeholder="Input the new URL"
-            name="updatedUrl"
+            name="updateUrl"
+            value="<%= urlToEdit.longUrl %>"
           />
           <button type="submit" class="btn btn-primary">Edit</button>
         </form>
