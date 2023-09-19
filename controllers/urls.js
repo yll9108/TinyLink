@@ -17,13 +17,13 @@ export const singleUrl = (req, res) => {
 
 export const createUrl = (req, res) => {
     const { longUrl } = req.body;
+    const updateUrl = longUrl;
     const shortUrlId = shortid.generate();
-    // console.log(`Shortened URL: ${shortUrlId}`);
 
     if (!req.session.user || !req.session.user.id) {
         return res.status(401).send("Unauthorized");
     }
-    
+  
     let userId = req.session.user.id
     
     const data = readingURL("models/urls.json");
@@ -31,6 +31,7 @@ export const createUrl = (req, res) => {
     const newUrl = {
         id: shortUrlId,
         longUrl,
+        updateUrl,
         userId,
     };
 
@@ -79,13 +80,9 @@ export const renderSingleUrl = (req, res) => {
 
     const userId = req.session.user.id;
     const urlIdToEdit = req.params.id;
-    // console.log('userId',userId);
-    // console.log('urlIdToEdit',urlIdToEdit);
     
     const data = readingURL("models/urls.json");
     const urlToEdit = data.urls.find((url) => url.id === urlIdToEdit);
-    // const indexToEdit = data.urls.findIndex((url) => url.id === urlIdToEdit);
-    console.log('urlToEdit',urlToEdit);
 
     if (!urlToEdit) {
         return res.status(404).send("URL not found");
@@ -105,12 +102,9 @@ export const updateUrl = (req, res) => {
 
     const userId = req.session.user.id;
     const urlIdToEdit = req.params.id;
-    // console.log('userId',userId);
-    // console.log('urlIdToEdit',urlIdToEdit);
 
     const data = readingURL("models/urls.json");
     const indexToEdit = data.urls.findIndex((url) => url.id === urlIdToEdit);
-    // console.log('indexToEdit',indexToEdit);
 
     if (indexToEdit === -1) {
         return res.status(404).send("URL not found");
@@ -121,7 +115,8 @@ export const updateUrl = (req, res) => {
     }
 
     // Update the longUrl with the new value from the form
-    data.urls[indexToEdit].longUrl = req.body.updatedUrl;
+    // data.urls[indexToEdit].longUrl = req.body.updatedUrl;
+    data.urls[indexToEdit].updateUrl = req.body.updateUrl;
 
     // Update
     writeDataToFileURL("models/urls.json", data);
